@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto">
+        <h1 class="text-2xl font-bold mt-8 mb-4">Your Cart</h1>
+        <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {% for item in cart_items %}
+                <li class="bg-white p-4 shadow-md rounded-md">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center">
+                            <span class="font-bold">{{ item.product.name }}</span>
+                            <span class="ml-2 text-gray-500">(${{ item.product.price }})</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="mr-2">Quantity:</span>
+                            <input type="number" value="{{ item.quantity }}" min="1" class="w-16 rounded-md border-gray-300 focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        <p class="text-xl mt-4">Total Price: ${{ total_price }}</p>
+    </div>
+</body>
+</html>
